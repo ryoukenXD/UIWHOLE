@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payroll Management System</title>
+    <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="{% static 'ui/css/add_employees.css' %}">
+    <link rel="stylesheet" href="{% static 'ui/css/personnel_profile.css' %}">
+
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="{% static 'ui/images/LOGO.jpg' %}" alt="CompanyLogo" class="logo">
+                <h2>QCB MFg. Corp.</h2>
+            </div>
+            <ul class="sidebar-links">
+                <h4>
+                    <span>Main Menu</span>
+                    <div class="menu-separator"></div>
+                  </h4>
+                  <li>
+                    <a href="{% url 'dashboard' %}">
+                      <span class="material-symbols-outlined"> dashboard </span>Dashboard</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'add_employees' %}"><span class="material-symbols-outlined"> person_add </span>Manage Employee</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'attendance' %}"><span class="material-symbols-outlined"> how_to_reg </span>Attendance</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'payroll_computations' %}"><span class="material-symbols-outlined"> calculate </span>Payroll Computations</a>
+                  </li>
+                  <h4>
+                    <span>Account</span>
+                    <div class="menu-separator"></div>
+                  </h4>
+                  <li>
+                    <a href="#"><span class="material-symbols-outlined"> person </span>User Profile</a>
+                  </li>
+                  <li>
+                    <a href="#"><span class="material-symbols-outlined"> logout </span>Logout</a>
+                  </li>
+            </ul>
+            <div class="user-account">
+                <div class="user-profile">
+                    <img src="{% static 'ui/images/profile-img.jpg' %}" alt="Profile Image">
+                    <div class="user-detail">
+                        <h3>Eva Murphy</h3>
+                        <span>Web Developer</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+    <div class="main-content">
+      <h1>Payroll Management System</h1>
+      <h2>Employee Management</h2>
+    
+      <div class="dashboard-header">
+        <div></div>
+        <h3>Employee Table</h3>
+        <label for="management-date">Date:</label>
+        <input type="date" id="management-date" />
+        <div class="employee-header">
+          <button class="add-btn" id="openFormBtn">Add Employee</button>
+          <button class="remove-btn">Remove Employee</button>
+        </div>
+      </div>
+    
+      <div class="employee-table">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Designation</th>
+              <th>Category</th>
+              <th>Date Hired</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>John Doe</td>
+              <td>Manager</td>
+              <td>Full-Time</td>
+              <td>01/10/2022</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Jane Smith</td>
+              <td>Developer</td>
+              <td>Part-Time</td>
+              <td>03/20/2023</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    
+
+    <div id="personnelFormOverlay" class="overlay" style="display: none;">
+      <div class="form-container">
+        <span id="closeFormBtn" class="close-btn">&times;</span>
+  
+        <h2>PERSONNEL PROFILE</h2>
+
+        <form method="POST">
+          <!-- Personnel Details -->
+          {% csrf_token %}
+          <div class="section">
+            <div class="section-header">Personnel Details</div>
+            <div class="section-content">
+              <label>Name of Personnel:</label>
+              <input type="text" name="name">
+        
+              <label>Position:</label>
+              <input type="text" name="position">
+        
+              <label>Status:</label>
+              <div class="section1">
+                <label class="checkbox-label">
+                  <input type="checkbox" name="status" value="Contractual"> Contractual
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="status" value="Regular"> Regular
+                </label>
+              </div>
+        
+              <label>Date Hired:</label>
+              <input type="date" name="date_hired">
+        
+              <label>Latest Evaluation:</label>
+              <input type="date" name="latest_evaluation">
+        
+              <label>Basic Salary:</label>
+              <input type="text" name="basic_salary">
+            </div>
+          </div>
+        
+          <div class="section">
+            <div class="section-header">Personnel Background</div>
+            <div class="section-content">
+              <label>Present Address:</label>
+              <input type="text" name="present_address">
+        
+              <label>Provincial Address:</label>
+              <input type="text" name="provincial_address">
+        
+              <label>Birthdate:</label>
+              <input type="date" name="birthdate">
+        
+              <label>Birth Place:</label>
+              <input type="text" name="birth_place">
+        
+              <label>Status:</label>
+              <div class="section2">
+                <label class="checkbox-label">
+                  <input type="checkbox" name="marital_status" value="Single"> Single
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="marital_status" value="Married"> Married
+                </label>
+              </div>
+        
+              <label>Name of Spouse:</label>
+              <input type="text" name="spouse_name">
+        
+              <div class="section2">
+                <label class="table-label">
+                  <table border="1">
+                    <tr>
+                        <th>Dependents</th>
+                        <th>Age</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="dependent1"></td>
+                        <td><input type="text" name="age1"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="dependent2"></td>
+                        <td><input type="text" name="age2"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="dependent3"></td>
+                        <td><input type="text" name="age3"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="dependent4"></td>
+                        <td><input type="text" name="age4"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="dependent5"></td>
+                        <td><input type="text" name="age5"></td>
+                    </tr>
+                  </table>
+                </label>
+              </div>
+        
+              <label>Mother's Name:</label>
+              <input type="text" name="mother_name">
+        
+              <label>Mother's Occupation:</label>
+              <input type="text" name="mother_occupation">
+        
+              <label>Father's Name:</label>
+              <input type="text" name="father_name">
+        
+              <label>Father's Occupation:</label>
+              <input type="text" name="father_occupation">
+        
+              <label>Contact Number:</label>
+              <input type="text" name="contact_number">
+            </div>
+          </div>
+        
+          <!-- Educational Background -->
+          <div class="section">
+            <div class="section-header">Educational Background</div>
+            <div class="section-content">
+              <label>Elementary:</label>
+              <input type="text" name="elementary">
+        
+              <label>High School:</label>
+              <input type="text" name="high_school">
+        
+              <label>College:</label>
+              <input type="text" name="college">
+        
+              <label>Other Skills:</label>
+              <textarea name="other_skills"></textarea>
+            </div>
+          </div>
+        
+          <!-- Employment Record -->
+          <div class="section">
+            <div class="section-header">Employment Record</div>
+            <div class="section-content">
+              <label>Company Name:</label>
+              <input type="text" name="company_name">
+        
+              <label>Address:</label>
+              <input type="text" name="company_address">
+        
+              <label>Year:</label>
+              <input type="text" name="company_year">
+        
+              <label>Contact Number:</label>
+              <input type="text" name="company_contact">
+            </div>
+          </div>
+        
+          <!-- Important Identifications -->
+          <div class="section">
+            <div class="section-header">Important Identifications</div>
+            <div class="section-content">
+              <label>SSS:</label>
+              <input type="text" name="sss">
+        
+              <label>PhilHealth:</label>
+              <input type="text" name="philhealth">
+        
+              <label>Pag-IBIG:</label>
+              <input type="text" name="pag_ibig">
+        
+              <label>TIN:</label>
+              <input type="text" name="tin">
+            </div>
+          </div>
+        
+          <button type="submit">Save</button>
+          <button type="button" id="cancelFormBtn">Cancel</button>
+        </form>
+        
+  <script>
+    const openFormBtn = document.getElementById('openFormBtn');
+    const closeFormBtn = document.getElementById('closeFormBtn');
+    const cancelFormBtn = document.getElementById('cancelFormBtn');
+    const personnelFormOverlay = document.getElementById('personnelFormOverlay');
+
+    openFormBtn.addEventListener('click', () => {
+      personnelFormOverlay.style.display = 'block';
+    });
+
+    closeFormBtn.addEventListener('click', () => {
+      personnelFormOverlay.style.display = 'none';
+    });
+
+    cancelFormBtn.addEventListener('click', () => {
+      personnelFormOverlay.style.display = 'none';
+    });
+  </script>
+</body>
+</html>

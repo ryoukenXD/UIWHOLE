@@ -1,0 +1,156 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+/* Overlay */
+#personnelFormOverlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+  }
+  
+  /* Form container */
+  .form-container {
+    position: relative;
+    background-color: #fff;
+    width: 90%;
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 12px;
+    overflow-y: auto;
+    max-height: 90vh;
+  }
+  
+  /* Close button */
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    background: none;
+    border: none;
+    z-index: 10000;
+    transition: color 0.2s ease;
+  }
+  
+  /* Container of the form */
+.form-container form {
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  /* Make titles span across the full width */
+  .form-container h2, 
+  .form-container h3 {
+    grid-column: span 2;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  /* Labels on the left side */
+  .form-container label {
+    text-align: right;
+    padding-right: 10px;
+    align-self: center;
+    font-weight: bold;
+  }
+  
+  /* Inputs and textareas on the right side */
+  .form-container input,
+  .form-container textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  /* For textareas */
+  textarea {
+    resize: vertical;
+    height: 60px;
+  }
+  
+  /* Buttons layout */
+  button[type="submit"],
+  button#cancelFormBtn {
+    padding: 10px 20px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    grid-column: 1;
+    margin-left: 310.0px;
+  }
+  
+  button#cancelFormBtn {
+    background-color: #f44336;
+    color: white;
+    grid-column: 2;
+    justify-self: end;
+    margin-right: 291px;
+  }
+  
+  .section-header {
+    background-color: #6bbecf;
+    color: #fff;
+    padding: 10px 15px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between checkbox and text */
+    font-weight: bold; /* Match the bold style */
+}
+
+.section1 {
+  display: flex;
+  gap: 10px; /* Space between items */
+}
+
+.section2 {
+  display: flex;
+  gap: 10px; /* Space between items */
+}
+
+table {
+  width: 125.4%;
+  border-collapse: collapse;
+  margin: 20px;
+}
+
+th, td {
+  padding: 8px;
+  text-align: center;
+}
+
+.input-full {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid black; /* Creates the underline effect */
+  outline: none;
+}
+
+.input-small {
+  width: 50px;
+  border: none;
+  border-bottom: 1px solid black; /* Creates the underline effect */
+  outline: none;
+}
